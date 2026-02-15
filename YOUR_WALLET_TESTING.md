@@ -1,9 +1,12 @@
 # 🎯 Testing Guide - Your Wallet
 
-## 💳 Your Stacks Wallet
+## 💳 Your Stacks Testnet Wallet
 ```
-SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV
+ST1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE27JV8YT
 ```
+
+**Network**: Testnet ✅  
+**Explorer**: https://explorer.stacks.co/address/ST1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE27JV8YT?chain=testnet
 
 ---
 
@@ -17,7 +20,7 @@ cd examples/weather-api
 npm install
 npm start
 # Port: 3001
-# Payment to: SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV
+# Payment to: ST1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE27JV8YT
 ```
 
 ### 2. Stock API (0.005 STX)
@@ -26,7 +29,7 @@ cd examples/stock-api
 npm install
 npm start
 # Port: 3002
-# Payment to: SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV
+# Payment to: ST1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE27JV8YT
 ```
 
 ### 3. AI Text API (0.01 STX)
@@ -35,7 +38,7 @@ cd examples/ai-text-api
 npm install
 npm start
 # Port: 3003
-# Payment to: SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV
+# Payment to: ST1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE27JV8YT
 ```
 
 ---
@@ -64,7 +67,7 @@ curl http://localhost:3001/api/weather?city=tokyo
   "payment": {
     "protocol": "x402-stacks",
     "network": "testnet",
-    "recipient": "SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV",
+    "recipient": "ST1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE27JV8YT",
     "amount": 0.001,
     "currency": "STX"
   }
@@ -74,7 +77,7 @@ curl http://localhost:3001/api/weather?city=tokyo
 ### Step 3: Get Test STX (Jika Belum Punya)
 
 1. Buka: https://explorer.stacks.co/sandbox/faucet
-2. Paste address: `SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV`
+2. Paste address: `ST1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE27JV8YT`
 3. Request STX (dapat ~500 STX testnet)
 
 ### Step 4: Send Payment ke Diri Sendiri (Testing)
@@ -83,7 +86,7 @@ curl http://localhost:3001/api/weather?city=tokyo
 1. Open: https://wallet.hiro.so/
 2. Login dengan wallet Anda
 3. Click "Send"
-4. **To**: `SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV` (ke diri sendiri!)
+4. **To**: `ST1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE27JV8YT` (ke diri sendiri!)
 5. **Amount**: `0.001` STX
 6. Click "Send"
 7. **COPY Transaction ID** (format: `0x1234...`)
@@ -258,7 +261,7 @@ Semua sudah siap:
 
 ## 🔗 Quick Links
 
-- **Your Address**: https://explorer.stacks.co/address/SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV?chain=testnet
+- **Your Address**: https://explorer.stacks.co/address/ST1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE27JV8YT?chain=testnet
 - **Testnet Faucet**: https://explorer.stacks.co/sandbox/faucet
 - **Hiro Wallet**: https://wallet.hiro.so/
 - **Explorer**: https://explorer.stacks.co/

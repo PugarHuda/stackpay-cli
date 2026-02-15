@@ -2,7 +2,7 @@
   "projectName": "stackpay-weather-api",
   "price": 0.001,
   "currency": "STX",
-  "paymentAddress": "SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV",
+  "paymentAddress": "ST1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE27JV8YT",
   "network": "testnet",
   "escrowContract": ""
 }
