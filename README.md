@@ -5,6 +5,7 @@
 [![Built for x402](https://img.shields.io/badge/Built%20for-x402%20Stacks%20Challenge-blue)](https://docs.x402stacks.xyz/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-green)](https://nodejs.org)
+[![GitHub](https://img.shields.io/badge/GitHub-PugarHuda%2Fstackpay--cli-black?logo=github)](https://github.com/PugarHuda/stackpay-cli)
 
 ## 🎯 What is StackPay?
 
@@ -249,7 +250,7 @@ cd examples/ai-text-api && npm install && npm start
 
 ```bash
 # Clone repository
-git clone https://github.com/your-username/stackpay-cli
+git clone https://github.com/PugarHuda/stackpay-cli
 cd stackpay-cli
 
 # Install dependencies
