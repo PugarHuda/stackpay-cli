@@ -123,11 +123,11 @@ stackpay init my-api --template fastify
 ### `stackpay config`
 
 ```bash
+# Set payment address (REQUIRED!)
+stackpay config --address SP2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKNRV9EJ7
+
 # Set pricing
 stackpay config --price 0.01 --currency STX
-
-# Set payment address
-stackpay config --address SP2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKNRV9EJ7
 
 # Set network
 stackpay config --network testnet
@@ -135,6 +135,15 @@ stackpay config --network testnet
 # View current configuration
 stackpay config --show
 ```
+
+**Important**: You MUST set your payment address before your API can accept payments!
+
+Get a Stacks address:
+- **Hiro Wallet**: https://wallet.hiro.so/
+- **Leather Wallet**: https://leather.io/
+- **Testnet Faucet**: https://explorer.stacks.co/sandbox/faucet
+
+See [Payment Setup Guide](./PAYMENT_SETUP_GUIDE.md) for detailed instructions.
 
 ## 💡 How It Works
 
@@ -398,10 +407,12 @@ $ npm start
 
 ## 📘 Documentation
 
+- [Payment Setup & Testing Guide](./PAYMENT_SETUP_GUIDE.md) — **START HERE!**
 - [Quick Start Guide](./docs/QUICKSTART.md)
 - [API Reference](./docs/API-REFERENCE.md)
 - [Architecture Overview](./docs/ARCHITECTURE.md)
 - [Smart Contract Guide](./docs/CONTRACTS.md)
+- [Submission Info](./SUBMISSION.md)
 
 ## 🏆 Built With
 

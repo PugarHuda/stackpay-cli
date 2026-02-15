@@ -1,0 +1,9 @@
+{
+  "projectName": "my-test",
+  "price": 0.01,
+  "currency": "STX",
+  "paymentAddress": "",
+  "network": "testnet",
+  "escrowContract": "",
+  "createdAt": "2026-02-15T17:07:25.428Z"
+}

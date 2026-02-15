@@ -77,6 +77,15 @@ export function TransactionsList({
                       {tx.txId.substring(0, 8)}...
                       {tx.txId.substring(tx.txId.length - 6)}
                     </code>
+                    <a
+                      href={`https://explorer.stacks.co/txid/${tx.txId}?chain=testnet`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ml-2 text-xs text-blue-600 hover:underline"
+                      title="View on Stacks Explorer"
+                    >
+                      🔗
+                    </a>
                   </td>
                   <td className="px-6 py-4">
                     <span className="font-bold text-lg">
