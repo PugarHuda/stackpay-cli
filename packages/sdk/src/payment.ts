@@ -70,7 +70,7 @@ export class PaymentHandler {
         throw new Error(`Transaction not found: ${verification.txId}`);
       }
 
-      const tx: TransactionInfo = await response.json();
+      const tx = await response.json() as TransactionInfo;
 
       // Verify transaction details
       const checks = [
@@ -129,7 +129,7 @@ export class PaymentHandler {
         return null;
       }
 
-      return await response.json();
+      return await response.json() as TransactionInfo | null;
     } catch {
       return null;
     }
@@ -154,7 +154,7 @@ export class PaymentHandler {
         );
 
         if (response.ok) {
-          const data = await response.json();
+          const data = await response.json() as any;
           const recentTx = data.results?.find(
             (tx: TransactionInfo) =>
               tx.tx_type === "token_transfer" &&
@@ -194,7 +194,7 @@ export class PaymentHandler {
         return [];
       }
 
-      const data = await response.json();
+      const data = await response.json() as any;
       return data.results || [];
     } catch {
       return [];
@@ -215,7 +215,7 @@ export class PaymentHandler {
         return { stx: 0, locked: 0 };
       }
 
-      const data = await response.json();
+      const data = await response.json() as any;
       return {
         stx: Number(data.stx?.balance || 0) / 1_000_000,
         locked: Number(data.stx?.locked || 0) / 1_000_000,

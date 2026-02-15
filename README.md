@@ -24,6 +24,8 @@ StackPay is a developer CLI tool that lets you monetize **any API** with Bitcoin
 
 ## 🚀 Quick Start
 
+> **New to StackPay?** Start here: [START_HERE.md](./START_HERE.md) 👈
+
 ### Option 1: Create Your Own API (Recommended)
 
 ```bash
