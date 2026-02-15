@@ -15,62 +15,53 @@ export function APIMetrics({ metrics }: { metrics: Metrics }) {
       title: "Total Revenue",
       value: `${metrics.totalRevenue.toFixed(4)} STX`,
       icon: DollarSign,
-      color: "text-green-600",
-      bgColor: "bg-green-50",
+      color: "bg-brutal-yellow",
       change: metrics.revenueChange,
     },
     {
       title: "API Calls",
       value: metrics.totalCalls.toLocaleString(),
       icon: Activity,
-      color: "text-blue-600",
-      bgColor: "bg-blue-50",
+      color: "bg-brutal-cyan",
       change: metrics.callsChange,
     },
     {
       title: "Avg Price",
       value: `${metrics.avgPrice.toFixed(4)} STX`,
       icon: TrendingUp,
-      color: "text-purple-600",
-      bgColor: "bg-purple-50",
+      color: "bg-brutal-pink",
       change: 0,
     },
     {
       title: "Active Users",
       value: metrics.activeUsers.toString(),
       icon: Users,
-      color: "text-orange-600",
-      bgColor: "bg-orange-50",
+      color: "bg-brutal-green",
       change: 0,
     },
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
       {cards.map((card) => (
         <div
           key={card.title}
-          className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+          className={`${card.color} p-6 border-4 border-black shadow-brutal hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-pointer`}
         >
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-500">{card.title}</p>
-              <p className="text-2xl font-bold mt-1 text-gray-900">
-                {card.value}
-              </p>
-              {card.change !== 0 && (
-                <p
-                  className={`text-xs mt-1 ${card.change > 0 ? "text-green-600" : "text-red-600"}`}
-                >
-                  {card.change > 0 ? "↑" : "↓"}{" "}
-                  {Math.abs(card.change).toFixed(1)}% vs last period
-                </p>
-              )}
+          <div className="flex items-start justify-between mb-4">
+            <div className="p-3 bg-white border-[3px] border-black">
+              <card.icon className="w-6 h-6" />
             </div>
-            <div className={`p-3 rounded-lg ${card.bgColor}`}>
-              <card.icon className={`w-6 h-6 ${card.color}`} />
-            </div>
+            {card.change !== 0 && (
+              <div className="px-2 py-1 bg-black text-white text-xs font-bold">
+                {card.change > 0 ? "↑" : "↓"} {Math.abs(card.change).toFixed(1)}%
+              </div>
+            )}
           </div>
+          <p className="text-sm font-bold uppercase tracking-wide mb-1">
+            {card.title}
+          </p>
+          <p className="text-3xl font-bold">{card.value}</p>
         </div>
       ))}
     </div>

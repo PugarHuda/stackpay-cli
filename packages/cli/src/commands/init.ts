@@ -63,9 +63,9 @@ export default class Init extends Command {
           "    stackpay config --price 0.01 --currency STX --address <YOUR_STX_ADDRESS>",
         ),
       );
-      this.log(chalk.cyan("    stackpay dev"));
+      this.log(chalk.cyan("    npm start"));
       this.log("");
-      this.log(chalk.dim("  Documentation: https://stackpay.dev/docs"));
+      this.log(chalk.dim("  Documentation: https://docs.x402stacks.xyz/"));
       this.log("");
     } catch (error) {
       spinner.fail("Failed to create project");
@@ -80,12 +80,16 @@ export default class Init extends Command {
   ): Promise<void> {
     const templatesDir = path.join(__dirname, "../../templates", template);
 
+    if (!fs.existsSync(templatesDir)) {
+      throw new Error(`Template "${template}" not found`);
+    }
+
     const context = {
       projectName,
       timestamp: new Date().toISOString(),
     };
 
-    // Define template files
+    // Define template files mapping
     const templateFiles: Record<string, string> = {
       "index.js": "index.js.hbs",
       "package.json": "package.json.hbs",
@@ -95,6 +99,7 @@ export default class Init extends Command {
       "README.md": "README.md.hbs",
     };
 
+    // Process each template file
     for (const [outputFile, templateFile] of Object.entries(templateFiles)) {
       const templatePath = path.join(templatesDir, templateFile);
 
@@ -103,16 +108,18 @@ export default class Init extends Command {
         const compiled = Handlebars.compile(templateContent);
         const outputPath = path.join(projectPath, outputFile);
 
+        // Create directory if needed
         fs.mkdirSync(path.dirname(outputPath), { recursive: true });
         fs.writeFileSync(outputPath, compiled(context));
       }
     }
 
-    // Copy .gitignore for generated project
+    // Create .gitignore
     const gitignoreContent = `node_modules/
 .env
 dist/
 *.log
+.DS_Store
 `;
     fs.writeFileSync(path.join(projectPath, ".gitignore"), gitignoreContent);
   }

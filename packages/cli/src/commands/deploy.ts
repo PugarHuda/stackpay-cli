@@ -75,6 +75,7 @@ export default class Deploy extends Command {
         codeBody: contractCode,
         senderKey: privateKey,
         network,
+        anchorMode: 3, // AnchorMode.Any
         postConditionMode: PostConditionMode.Deny,
         fee: 10000n, // 0.01 STX fee
       };

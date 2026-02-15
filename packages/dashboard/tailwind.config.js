@@ -16,6 +16,18 @@ export default {
           800: "#3b5bdb",
           900: "#364fc7",
         },
+        brutal: {
+          yellow: "#FFE500",
+          pink: "#FF6B9D",
+          cyan: "#00F0FF",
+          green: "#00FF94",
+          purple: "#B794F6",
+        },
+      },
+      boxShadow: {
+        brutal: "4px 4px 0px 0px rgba(0,0,0,1)",
+        "brutal-lg": "8px 8px 0px 0px rgba(0,0,0,1)",
+        "brutal-xl": "12px 12px 0px 0px rgba(0,0,0,1)",
       },
     },
   },

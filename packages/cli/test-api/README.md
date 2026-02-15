@@ -1,8 +1,8 @@
-# {{projectName}}
+# test-api
 
 > API powered by StackPay - monetized with Bitcoin micropayments on Stacks
 
-Built with [Fastify](https://fastify.dev/) and the [x402-stacks](https://docs.x402stacks.xyz/) payment protocol.
+Built with the [x402-stacks](https://docs.x402stacks.xyz/) payment protocol.
 
 ## 🚀 Quick Start
 
@@ -48,7 +48,7 @@ Edit `stackpay.config.json`:
 
 ```json
 {
-  "projectName": "{{projectName}}",
+  "projectName": "test-api",
   "price": 0.01,
   "currency": "STX",
   "paymentAddress": "SP2J6ZY...",
@@ -92,7 +92,6 @@ stackpay status
 
 - [x402-stacks Documentation](https://docs.x402stacks.xyz/)
 - [Stacks Documentation](https://docs.stacks.co)
-- [Fastify Documentation](https://fastify.dev/)
 - [StackPay GitHub](https://github.com/stackpay)
 
 ## 📄 License

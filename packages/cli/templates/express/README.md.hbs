@@ -1,22 +1,99 @@
-#
-{{projectName}}
+# {{projectName}}
 
-> Powered by [StackPay](https://stackpay.dev) - Monetized API with Bitcoin
-micropayments ## Getting Started ### 1. Install dependencies ```bash npm install
-``` ### 2. Configure your API Edit `stackpay.config.json` or run: ```bash
-stackpay config --price 0.01 --currency STX --address YOUR_STX_ADDRESS ``` ###
-3. Start the server ```bash # Development npm run dev # or using StackPay CLI
-stackpay dev # Production npm start ``` ## API Endpoints | Endpoint | Method |
-Price | Description | |----------|--------|-------|-------------| | `/` | GET |
-Free | API info | | `/health` | GET | Free | Health check | | `/docs` | GET |
-Free | API documentation | | `/api/data` | GET | 0.01 STX | Your monetized
-endpoint | ## Making Paid API Calls ### Step 1: Check payment requirements
-```bash curl http://localhost:3000/api/data ``` Response (HTTP 402): ```json {
-"status": 402, "error": "Payment Required", "payment": { "protocol":
-"x402-stacks", "amount": 0.01, "currency": "STX", "recipient":
-"YOUR_STX_ADDRESS" } } ``` ### Step 2: Send payment on Stacks blockchain Send
-the required amount to the recipient address. ### Step 3: Access the API with
-payment proof ```bash curl -H "X-Payment-Proof: YOUR_TX_ID"
-http://localhost:3000/api/data ``` ## Configuration Edit `stackpay.config.json`:
-```json { "projectName": "{{projectName}}", "price": 0.01, "currency": "STX",
-"paymentAddress": "YOUR_STX_ADDRESS", "network": "testnet" } ``` ## License MIT
+> API powered by StackPay - monetized with Bitcoin micropayments on Stacks
+
+Built with the [x402-stacks](https://docs.x402stacks.xyz/) payment protocol.
+
+## 🚀 Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Configure your payment address
+stackpay config --address <YOUR_STX_ADDRESS>
+
+# Start the server
+npm start
+```
+
+Your API will be running at `http://localhost:3000`
+
+## 💰 How It Works
+
+This API uses the **x402 payment protocol** to require Bitcoin micropayments before serving responses.
+
+### Payment Flow
+
+1. Client makes a request to `/api/*` endpoint
+2. Server returns **HTTP 402 Payment Required** with payment instructions
+3. Client sends STX payment on Stacks blockchain
+4. Client includes transaction ID in `X-Payment-Proof` header
+5. Server verifies payment on-chain
+6. Server returns the API response
+
+### Example Request
+
+```bash
+# Without payment - returns 402
+curl http://localhost:3000/api/data
+
+# With payment proof
+curl -H "X-Payment-Proof: 0x1234..." http://localhost:3000/api/data
+```
+
+## 📝 Configuration
+
+Edit `stackpay.config.json`:
+
+```json
+{
+  "projectName": "{{projectName}}",
+  "price": 0.01,
+  "currency": "STX",
+  "paymentAddress": "SP2J6ZY...",
+  "network": "testnet"
+}
+```
+
+Or use the CLI:
+
+```bash
+stackpay config --price 0.01 --currency STX --address SP2J6ZY...
+```
+
+## 🔧 API Endpoints
+
+### Free Endpoints
+
+- `GET /` - API info
+- `GET /health` - Health check
+- `GET /docs` - API documentation
+
+### Paid Endpoints (require payment)
+
+- `GET /api/data` - Your monetized API endpoint
+
+## 📊 Monitor Revenue
+
+View your revenue and transactions in the StackPay dashboard:
+
+```bash
+stackpay status
+```
+
+## 🔐 Security
+
+- Payment verification happens on-chain via Stacks API
+- Transaction IDs are tracked to prevent replay attacks
+- All payments are settled on Bitcoin via Stacks Layer 2
+
+## 📚 Resources
+
+- [x402-stacks Documentation](https://docs.x402stacks.xyz/)
+- [Stacks Documentation](https://docs.stacks.co)
+- [StackPay GitHub](https://github.com/stackpay)
+
+## 📄 License
+
+MIT

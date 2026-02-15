@@ -83,30 +83,30 @@ function App() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-100">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200">
+      <header className="bg-white border-b-4 border-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-8 h-8 bg-stacks-600 rounded-lg">
-                <Zap className="w-5 h-5 text-white" />
+          <div className="flex justify-between items-center h-20">
+            <div className="flex items-center gap-4">
+              <div className="flex items-center justify-center w-12 h-12 bg-brutal-yellow border-[3px] border-black shadow-brutal">
+                <Zap className="w-7 h-7" />
               </div>
-              <h1 className="text-xl font-bold text-gray-900">StackPay</h1>
-              <span className="px-2 py-0.5 bg-stacks-50 text-stacks-700 text-xs font-medium rounded-full">
-                Dashboard
-              </span>
+              <div>
+                <h1 className="text-2xl font-bold uppercase tracking-tight">StackPay</h1>
+                <p className="text-xs font-bold text-gray-600">x402 PAYMENT DASHBOARD</p>
+              </div>
             </div>
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 rounded-lg">
-                <Wallet className="w-4 h-4 text-gray-500" />
-                <code className="text-xs text-gray-600 font-mono">
+              <div className="flex items-center gap-2 px-4 py-2 bg-white border-[3px] border-black">
+                <Wallet className="w-4 h-4" />
+                <code className="text-xs font-bold font-mono">
                   {address.substring(0, 8)}...
                   {address.substring(address.length - 4)}
                 </code>
               </div>
-              <span className="px-2 py-1 bg-green-50 text-green-700 text-xs font-medium rounded-full">
-                ● Testnet
+              <span className="px-3 py-1.5 bg-brutal-green border-2 border-black text-xs font-bold">
+                ● TESTNET
               </span>
             </div>
           </div>
@@ -114,40 +114,40 @@ function App() {
       </header>
 
       {/* Navigation Tabs */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-white border-b-4 border-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex gap-6" aria-label="Tabs">
+          <nav className="flex gap-2" aria-label="Tabs">
             <button
               onClick={() => setActiveTab("overview")}
-              className={`py-3 px-1 border-b-2 text-sm font-medium transition-colors flex items-center gap-2 ${
+              className={`py-4 px-6 text-sm font-bold uppercase tracking-wide flex items-center gap-2 border-b-4 transition-all ${
                 activeTab === "overview"
-                  ? "border-stacks-600 text-stacks-700"
-                  : "border-transparent text-gray-500 hover:text-gray-700"
+                  ? "border-black bg-brutal-yellow"
+                  : "border-transparent hover:bg-gray-50"
               }`}
             >
-              <BarChart3 className="w-4 h-4" />
+              <BarChart3 className="w-5 h-5" />
               Overview
             </button>
             <button
               onClick={() => setActiveTab("transactions")}
-              className={`py-3 px-1 border-b-2 text-sm font-medium transition-colors flex items-center gap-2 ${
+              className={`py-4 px-6 text-sm font-bold uppercase tracking-wide flex items-center gap-2 border-b-4 transition-all ${
                 activeTab === "transactions"
-                  ? "border-stacks-600 text-stacks-700"
-                  : "border-transparent text-gray-500 hover:text-gray-700"
+                  ? "border-black bg-brutal-cyan"
+                  : "border-transparent hover:bg-gray-50"
               }`}
             >
-              <Code2 className="w-4 h-4" />
+              <Code2 className="w-5 h-5" />
               Transactions
             </button>
             <button
               onClick={() => setActiveTab("settings")}
-              className={`py-3 px-1 border-b-2 text-sm font-medium transition-colors flex items-center gap-2 ${
+              className={`py-4 px-6 text-sm font-bold uppercase tracking-wide flex items-center gap-2 border-b-4 transition-all ${
                 activeTab === "settings"
-                  ? "border-stacks-600 text-stacks-700"
-                  : "border-transparent text-gray-500 hover:text-gray-700"
+                  ? "border-black bg-brutal-pink"
+                  : "border-transparent hover:bg-gray-50"
               }`}
             >
-              <Settings className="w-4 h-4" />
+              <Settings className="w-5 h-5" />
               Settings
             </button>
           </nav>
@@ -159,7 +159,7 @@ function App() {
         {activeTab === "overview" && (
           <>
             <APIMetrics metrics={mockMetrics} />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
               <RevenueChart data={mockRevenueData} />
               <CallsChart data={mockRevenueData} />
             </div>
@@ -172,35 +172,35 @@ function App() {
         )}
 
         {activeTab === "settings" && (
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6">
-              API Configuration
+          <div className="bg-white border-4 border-black shadow-brutal p-8">
+            <h2 className="text-2xl font-bold uppercase tracking-wide mb-8">
+              ⚙️ API Configuration
             </h2>
-            <div className="space-y-4 max-w-lg">
+            <div className="space-y-6 max-w-2xl">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-bold uppercase tracking-wide mb-2">
                   Payment Address
                 </label>
                 <input
                   type="text"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono focus:ring-2 focus:ring-stacks-500 focus:border-stacks-500"
+                  className="w-full px-4 py-3 border-[3px] border-black text-sm font-mono font-bold focus:outline-none focus:ring-4 focus:ring-brutal-yellow"
                   placeholder="SP2J6ZY48GV1..."
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-bold uppercase tracking-wide mb-2">
                   Price per API Call
                 </label>
-                <div className="flex gap-2">
+                <div className="flex gap-3">
                   <input
                     type="number"
                     defaultValue={0.01}
                     step={0.001}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-stacks-500 focus:border-stacks-500"
+                    className="flex-1 px-4 py-3 border-[3px] border-black text-sm font-bold focus:outline-none focus:ring-4 focus:ring-brutal-cyan"
                   />
-                  <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white focus:ring-2 focus:ring-stacks-500">
+                  <select className="px-4 py-3 border-[3px] border-black text-sm font-bold bg-white focus:outline-none focus:ring-4 focus:ring-brutal-cyan">
                     <option>STX</option>
                     <option>sBTC</option>
                     <option>USDCx</option>
@@ -208,16 +208,16 @@ function App() {
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-bold uppercase tracking-wide mb-2">
                   Network
                 </label>
-                <select className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white focus:ring-2 focus:ring-stacks-500">
+                <select className="w-full px-4 py-3 border-[3px] border-black text-sm font-bold bg-white focus:outline-none focus:ring-4 focus:ring-brutal-green">
                   <option>Testnet</option>
                   <option>Mainnet</option>
                 </select>
               </div>
-              <button className="mt-4 px-4 py-2 bg-stacks-600 text-white rounded-lg text-sm font-medium hover:bg-stacks-700 transition-colors">
-                Save Configuration
+              <button className="mt-6 px-8 py-4 bg-black text-white border-[3px] border-black text-sm font-bold uppercase tracking-wide hover:bg-white hover:text-black transition-all shadow-brutal hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
+                💾 Save Configuration
               </button>
             </div>
           </div>
@@ -225,24 +225,24 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-between items-center text-sm text-gray-500">
-            <span>StackPay CLI v1.0.0 — Built for x402 Stacks Challenge</span>
-            <div className="flex gap-4">
+      <footer className="border-t-4 border-black mt-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex justify-between items-center text-sm font-bold">
+            <span>⚡ StackPay CLI v1.0.0 — Built for x402 Stacks Challenge</span>
+            <div className="flex gap-6">
               <a
                 href="https://github.com/stackpay"
-                className="hover:text-gray-700"
+                className="hover:underline"
               >
                 GitHub
               </a>
               <a
                 href="https://docs.x402stacks.xyz/"
-                className="hover:text-gray-700"
+                className="hover:underline"
               >
                 x402 Docs
               </a>
-              <a href="https://docs.stacks.co" className="hover:text-gray-700">
+              <a href="https://docs.stacks.co" className="hover:underline">
                 Stacks Docs
               </a>
             </div>
