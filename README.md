@@ -20,22 +20,35 @@ StackPay is a developer CLI tool that lets you monetize **any API** with Bitcoin
 
 ## 🚀 Quick Start
 
+### Try the Example APIs
+
 ```bash
-# Install StackPay CLI
-npm install -g stackpay-cli
+# Clone the repository
+git clone https://github.com/PugarHuda/stackpay-cli
+cd stackpay-cli
 
-# Create a new monetized API
-stackpay init my-api
-
-# Navigate and install
-cd my-api
+# Run the Weather API example
+cd examples/weather-api
 npm install
+npm start
 
-# Configure pricing
-stackpay config --price 0.01 --currency STX --address SP2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKNRV9EJ7
+# Visit http://localhost:3001/
+# Try the free endpoint: GET /
+# Try the paid endpoint: GET /api/weather?city=tokyo
+```
 
-# Start your API
-stackpay dev
+### For Development
+
+```bash
+# Install dependencies
+pnpm install
+
+# Link CLI globally (optional)
+cd packages/cli
+npm link
+
+# Now you can use stackpay commands
+stackpay --version
 ```
 
 Your API is now live with Bitcoin micropayments! 🎉
@@ -179,35 +192,55 @@ cd packages/dashboard
 npm run dev
 ```
 
-## 📂 Example APIs
+## 📂 Example APIs (Ready to Run!)
+
+All example APIs are **fully functional** and demonstrate the x402-stacks payment protocol in action.
 
 ### 🌤️ Weather API
 Real-time weather data from Open-Meteo, monetized at 0.001 STX per call.
 
 ```bash
-cd examples/weather-api && npm install && npm start
-# GET /api/weather?city=tokyo → Current weather
-# GET /api/forecast?city=london&days=7 → 7-day forecast
+cd examples/weather-api
+npm install
+npm start
+
+# Test endpoints:
+# GET http://localhost:3001/ → API info (free)
+# GET http://localhost:3001/api/weather?city=tokyo → Current weather (paid, returns HTTP 402)
+# GET http://localhost:3001/api/forecast?city=london&days=7 → 7-day forecast (paid)
 ```
+
+**Supported cities:** New York, London, Tokyo, Paris, Berlin, Sydney, Singapore, San Francisco, Jakarta, Mumbai
 
 ### 📈 Stock & Crypto API
 Live stock quotes and cryptocurrency prices at 0.005 STX per call.
 
 ```bash
-cd examples/stock-api && npm install && npm start
-# GET /api/stock/AAPL → Apple stock quote
-# GET /api/crypto → All crypto prices
+cd examples/stock-api
+npm install
+npm start
+
+# GET http://localhost:3002/api/stock/AAPL → Apple stock quote
+# GET http://localhost:3002/api/crypto → All crypto prices
 ```
 
 ### 🤖 AI Text API
 Text analysis (summarization, sentiment, keywords, translation) at 0.01 STX per call.
 
 ```bash
-cd examples/ai-text-api && npm install && npm start
-# POST /api/summarize → Summarize text
-# POST /api/sentiment → Analyze sentiment
-# POST /api/keywords → Extract keywords
+cd examples/ai-text-api
+npm install
+npm start
+
+# POST http://localhost:3003/api/summarize → Summarize text
+# POST http://localhost:3003/api/sentiment → Analyze sentiment
+# POST http://localhost:3003/api/keywords → Extract keywords
 ```
+
+**Payment Flow Demo:**
+1. Request without payment → HTTP 402 with payment instructions
+2. Include `X-Payment-Proof` header with Stacks transaction ID
+3. Server verifies payment on-chain → Returns API response
 
 ## 🏗 Architecture
 
