@@ -2,7 +2,7 @@
   "projectName": "stackpay-stock-api",
   "price": 0.005,
   "currency": "STX",
-  "paymentAddress": "",
+  "paymentAddress": "SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV",
   "network": "testnet",
   "escrowContract": ""
 }

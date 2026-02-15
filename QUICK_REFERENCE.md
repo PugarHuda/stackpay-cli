@@ -9,7 +9,7 @@ cd my-api
 npm install
 
 # 2. Set payment address (REQUIRED!)
-stackpay config --address SP2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKNRV9EJ7
+stackpay config --address SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV
 
 # 3. Start server
 npm start
@@ -123,7 +123,7 @@ npm install && npm start
 
 ### "Payment address not configured"
 ```bash
-stackpay config --address SP2J6ZY...
+stackpay config --address SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV
 ```
 
 ### "Transaction not found"
@@ -148,7 +148,7 @@ stackpay config --address SP2J6ZY...
   "projectName": "my-api",
   "price": 0.01,
   "currency": "STX",
-  "paymentAddress": "SP2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKNRV9EJ7",
+  "paymentAddress": "SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV",
   "network": "testnet"
 }
 ```

@@ -124,7 +124,7 @@ stackpay init my-api --template fastify
 
 ```bash
 # Set payment address (REQUIRED!)
-stackpay config --address SP2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKNRV9EJ7
+stackpay config --address SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV
 
 # Set pricing
 stackpay config --price 0.01 --currency STX

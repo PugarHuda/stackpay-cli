@@ -34,7 +34,7 @@ stackpay config --show
   "projectName": "my-api",
   "price": 0.01,
   "currency": "STX",
-  "paymentAddress": "SP2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKNRV9EJ7",
+  "paymentAddress": "SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV",
   "network": "testnet",
   "escrowContract": "",
   "createdAt": "2026-02-16T00:00:00.000Z"
@@ -112,10 +112,10 @@ Content-Type: application/json
   "payment": {
     "protocol": "x402-stacks",
     "network": "testnet",
-    "recipient": "SP2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKNRV9EJ7",
+    "recipient": "SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV",
     "amount": 0.01,
     "currency": "STX",
-    "instructions": "Send 0.01 STX to SP2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKNRV9EJ7"
+    "instructions": "Send 0.01 STX to SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV"
   },
   "headers": {
     "X-Payment-Proof": "Include the Stacks transaction ID as payment proof"
@@ -131,7 +131,7 @@ Content-Type: application/json
 
 1. Open Hiro Wallet
 2. Click "Send"
-3. Paste recipient address: `SP2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKNRV9EJ7`
+3. Paste recipient address: `SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV`
 4. Amount: `0.01` STX
 5. Click "Send"
 6. **COPY TRANSACTION ID** (format: `0x1234...`)
@@ -140,7 +140,7 @@ Content-Type: application/json
 
 ```bash
 stacks send_tokens \
-  SP2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKNRV9EJ7 \
+  SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV \
   10000 \
   0 \
   <YOUR_PRIVATE_KEY> \
@@ -232,7 +232,7 @@ cd weather-api
 npm install
 
 # Configure payment
-stackpay config --address SP2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKNRV9EJ7 --price 0.001
+stackpay config --address SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV --price 0.001
 
 # Start server
 npm start
@@ -256,7 +256,7 @@ curl http://localhost:3000/api/data
 
 ```bash
 # Using Hiro Wallet:
-# - Send 0.001 STX to SP2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKNRV9EJ7
+# - Send 0.001 STX to SP1B3V8D8FP56G1GB4F4GX11KZBJGH2FNE3S27JEV
 # - Copy TX ID: 0xabc123...
 ```
 
