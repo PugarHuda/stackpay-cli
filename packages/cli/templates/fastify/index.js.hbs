@@ -1,0 +1,120 @@
+const fastify = require('fastify')({ logger: true });
+const config = require('./stackpay.config.json');
+const { verifyPayment } = require('./middleware/x402-handler');
+
+const PORT = process.env.PORT || 3000;
+
+// Health check (no payment required)
+fastify.get('/', async () => {
+  return {
+    name: '{{projectName}}',
+    status: 'running',
+    pricing: `${config.price} ${config.currency} per API call`,
+    docs: '/docs',
+  };
+});
+
+fastify.get('/health', async () => {
+  return { status: 'ok', timestamp: new Date().toISOString() };
+});
+
+// x402 payment hook for API routes
+fastify.addHook('onRequest', async (request, reply) => {
+  // Skip non-API routes
+  if (!request.url.startsWith('/api')) return;
+
+  // Validate paymentAddress is configured
+  if (!config.paymentAddress) {
+    reply.code(500).send({
+      error: 'Server Configuration Error',
+      message: 'Payment address not configured. Run: stackpay config --address <YOUR_STX_ADDRESS>',
+    });
+    return;
+  }
+
+  const paymentProof = request.headers['x-payment-proof'];
+
+  if (!paymentProof) {
+    reply.code(402).send({
+      status: 402,
+      error: 'Payment Required',
+      payment: {
+        protocol: 'x402-stacks',
+        network: config.network,
+        recipient: config.paymentAddress,
+        amount: config.price,
+        currency: config.currency,
+        instructions: `Send ${config.price} ${config.currency} to ${config.paymentAddress}`,
+      },
+    });
+    return;
+  }
+
+  const result = await verifyPayment(paymentProof, config);
+
+  if (!result.valid) {
+    reply.code(402).send({
+      status: 402,
+      error: 'Invalid Payment',
+      message: result.reason,
+      txId: paymentProof,
+    });
+    return;
+  }
+
+  request.payment = { txId: paymentProof, verified: true };
+});
+
+// Monetized API endpoint
+fastify.get('/api/data', async (request) => {
+  return {
+    message: 'Hello from {{projectName}}!',
+    data: {
+      example: 'This is a paid API response',
+      timestamp: new Date().toISOString(),
+    },
+    meta: {
+      price: config.price,
+      currency: config.currency,
+    },
+  };
+});
+
+// Documentation (free)
+fastify.get('/docs', async () => {
+  return {
+    name: '{{projectName}}',
+    version: '1.0.0',
+    endpoints: [
+      {
+        path: '/api/data',
+        method: 'GET',
+        description: 'Get data from the API',
+        price: `${config.price} ${config.currency}`,
+      },
+    ],
+    payment: {
+      protocol: 'x402-stacks',
+      currency: config.currency,
+      network: config.network,
+      address: config.paymentAddress,
+      price: config.price,
+    },
+  };
+});
+
+// Start server
+const start = async () => {
+  try {
+    await fastify.listen({ port: PORT, host: '0.0.0.0' });
+    console.log('');
+    console.log(`  {{projectName}} running on http://localhost:${PORT}`);
+    console.log(`  Accepting ${config.currency} payments at ${config.price} per call`);
+    console.log('');
+  } catch (err) {
+    fastify.log.error(err);
+    process.exit(1);
+  }
+};
+
+start();

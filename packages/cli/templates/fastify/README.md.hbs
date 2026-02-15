@@ -1,0 +1,13 @@
+#
+{{projectName}}
+
+> Powered by [StackPay](https://stackpay.dev) — Fastify API with Bitcoin
+micropayments ## Getting Started ```bash npm install stackpay config --price
+0.01 --currency STX --address YOUR_STX_ADDRESS npm run dev ``` ## Endpoints |
+Endpoint | Method | Price | Description |
+|----------|--------|-------|-------------| | `/` | GET | Free | API info | |
+`/health` | GET | Free | Health check | | `/docs` | GET | Free | API
+documentation | | `/api/data` | GET | 0.01 STX | Your monetized endpoint | ##
+Making Paid Calls ```bash # Without payment (gets 402) curl
+http://localhost:3000/api/data # With payment proof curl -H "X-Payment-Proof:
+YOUR_TX_ID" http://localhost:3000/api/data ```

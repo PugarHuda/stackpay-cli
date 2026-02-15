@@ -1,0 +1,8 @@
+{
+  "projectName": "stackpay-weather-api",
+  "price": 0.001,
+  "currency": "STX",
+  "paymentAddress": "",
+  "network": "testnet",
+  "escrowContract": ""
+}

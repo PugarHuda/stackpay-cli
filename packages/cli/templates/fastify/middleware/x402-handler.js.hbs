@@ -1,0 +1,61 @@
+/**
+ * x402 Payment Required Handler for StackPay (Fastify)
+ * Verifies Bitcoin micropayments on Stacks blockchain
+ */
+
+const STACKS_API = {
+  testnet: 'https://api.testnet.hiro.so',
+  mainnet: 'https://api.mainnet.hiro.so',
+};
+
+// Track used transaction IDs to prevent replay attacks
+const usedTxIds = new Set();
+
+async function verifyPayment(txId, config) {
+  try {
+    // Prevent replay attacks
+    if (usedTxIds.has(txId)) {
+      return { valid: false, reason: 'Transaction already used as payment' };
+    }
+
+    // Validate txId format (0x + 64 hex chars)
+    if (!/^0x[0-9a-fA-F]{64}$/.test(txId)) {
+      return { valid: false, reason: 'Invalid transaction ID format' };
+    }
+
+    const apiUrl = STACKS_API[config.network] || STACKS_API.testnet;
+    const response = await fetch(`${apiUrl}/extended/v1/tx/${txId}`);
+
+    if (!response.ok) {
+      return { valid: false, reason: 'Transaction not found' };
+    }
+
+    const tx = await response.json();
+    const microAmount = Math.round(config.price * 1000000);
+
+    if (tx.tx_status !== 'success') {
+      return { valid: false, reason: `Transaction status: ${tx.tx_status}` };
+    }
+
+    if (tx.tx_type !== 'token_transfer') {
+      return { valid: false, reason: 'Not a token transfer' };
+    }
+
+    if (tx.token_transfer.recipient_address !== config.paymentAddress) {
+      return { valid: false, reason: 'Wrong recipient address' };
+    }
+
+    if (Number(tx.token_transfer.amount) < microAmount) {
+      return { valid: false, reason: 'Insufficient amount' };
+    }
+
+    // Mark transaction as used
+    usedTxIds.add(txId);
+
+    return { valid: true, tx };
+  } catch (error) {
+    return { valid: false, reason: error.message };
+  }
+}
+
+module.exports = { verifyPayment };

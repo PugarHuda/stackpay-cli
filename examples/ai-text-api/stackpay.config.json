@@ -1,0 +1,8 @@
+{
+  "projectName": "stackpay-ai-text-api",
+  "price": 0.01,
+  "currency": "STX",
+  "paymentAddress": "",
+  "network": "testnet",
+  "escrowContract": ""
+}

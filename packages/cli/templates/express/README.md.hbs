@@ -1,0 +1,22 @@
+#
+{{projectName}}
+
+> Powered by [StackPay](https://stackpay.dev) - Monetized API with Bitcoin
+micropayments ## Getting Started ### 1. Install dependencies ```bash npm install
+``` ### 2. Configure your API Edit `stackpay.config.json` or run: ```bash
+stackpay config --price 0.01 --currency STX --address YOUR_STX_ADDRESS ``` ###
+3. Start the server ```bash # Development npm run dev # or using StackPay CLI
+stackpay dev # Production npm start ``` ## API Endpoints | Endpoint | Method |
+Price | Description | |----------|--------|-------|-------------| | `/` | GET |
+Free | API info | | `/health` | GET | Free | Health check | | `/docs` | GET |
+Free | API documentation | | `/api/data` | GET | 0.01 STX | Your monetized
+endpoint | ## Making Paid API Calls ### Step 1: Check payment requirements
+```bash curl http://localhost:3000/api/data ``` Response (HTTP 402): ```json {
+"status": 402, "error": "Payment Required", "payment": { "protocol":
+"x402-stacks", "amount": 0.01, "currency": "STX", "recipient":
+"YOUR_STX_ADDRESS" } } ``` ### Step 2: Send payment on Stacks blockchain Send
+the required amount to the recipient address. ### Step 3: Access the API with
+payment proof ```bash curl -H "X-Payment-Proof: YOUR_TX_ID"
+http://localhost:3000/api/data ``` ## Configuration Edit `stackpay.config.json`:
+```json { "projectName": "{{projectName}}", "price": 0.01, "currency": "STX",
+"paymentAddress": "YOUR_STX_ADDRESS", "network": "testnet" } ``` ## License MIT
